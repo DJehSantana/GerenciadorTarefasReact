@@ -1,0 +1,47 @@
+//Arquivo de estilos globais da aplicação
+//setando o bootstrap no Sass
+@import "~bootstrap/scss/bootstrap";
+
+//importando as variáveis da paleta de cores do site
+@import './config.scss';
+
+//importando o arquivo de estilos do Login
+@import './login.scss';
+
+//importando a fonte
+@font-face {
+    font-family: 'Bieannale Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../assets/fontes/Biennale/Fontspring-DEMO-biennale-regular.otf') format('opentype');
+}
+
+html{
+    height: 100%;
+    font-family: 'Bieannale Regular';
+}
+
+body {
+    height: 100%;
+    font-family: 'Bieannale Regular';
+}
+
+//div principal
+#root {
+    height: 100%;
+    display: flex;
+    // formatação para que a div pegue a tela toda
+    flex: 1 1 0%;
+    flex-direction: column;
+    //alinhando todos os itens ao centro
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px;
+}
+
+
+
+
+
