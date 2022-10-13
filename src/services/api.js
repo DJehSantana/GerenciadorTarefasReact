@@ -2,8 +2,9 @@ import axios from 'axios';
 // axios - serve como cliente http para fazer requisições com promisses
 
 const URL = process.env.REACT_APP_API_URL+'/api/'
+console.log(URL);
 const instance = axios.create ({
-    baseUrl: URL,
+    baseURL: URL,
     timeout: 30000
     //o timeout especifica quanto tempo a aplicação vai aguardar o 
     //retorno das requisições

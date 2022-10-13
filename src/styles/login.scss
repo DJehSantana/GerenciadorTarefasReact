@@ -51,6 +51,13 @@
         }
     }
 
+    p{
+        max-width: 280px;
+        text-align: center;
+        color: $errorColor;
+        font-weight: bold;
+    }
+
     button{
         width: 100%;
         height: 50px;
