@@ -5,7 +5,7 @@ import lock from '../assets/icones/lock.svg';
 import { Input } from '../componentes/Input';
 import { executaRequisicao } from '../services/api';
 
-export const Login = () => {
+export const Login = props => {
     //[variável -- função que altera o estado do componente]
     const [login, setLogin] = useState ('');
     const [senha, setSenha] = useState ('');
@@ -34,6 +34,7 @@ export const Login = () => {
                 localStorage.setItem('accessToken', resultado.data.token);
                 localStorage.setItem('usuarioNome', resultado.data.nome);
                 localStorage.setItem('usuarioEmail',resultado.data.email);
+                props.setAccessToken(resultado.data.token);
             } 
                         
         } catch (e) {
