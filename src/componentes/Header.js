@@ -10,9 +10,16 @@ export const Header = props => {
 
     return (
         <div className="container-header">
-            <img src={logo} alt= "Logo Devaria"/>
-            <span>Olá, {primeiroNome}</span>
-            <img src={exit} alt= "Sair" />
+            <img className="logo" src={logo} alt= "Logo Devaria"/>
+            <button><span>+</span> Adicionar tarefa</button>
+            <div className="mobile">
+                <span>Olá, {primeiroNome}</span>
+                <img className='sair' src={exit} alt= "Sair" />
+            </div>
+            <div className="desktop">
+                <span>Olá, {primeiroNome}</span>
+                <img className='sair' src={exit} alt= "Sair" />
+            </div>
         </div>
     )
 }
