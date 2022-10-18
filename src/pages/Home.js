@@ -13,7 +13,7 @@ export const Home = props => {
 
     return(
         <>
-            <Header />
+            <Header sair= {sair}/>
             
         </>
     );

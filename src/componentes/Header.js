@@ -14,11 +14,11 @@ export const Header = props => {
             <button><span>+</span> Adicionar tarefa</button>
             <div className="mobile">
                 <span>Olá, {primeiroNome}</span>
-                <img className='sair' src={exit} alt= "Sair" />
+                <img className='sair' src={exit} alt= "Sair" onClick={props.sair} />
             </div>
             <div className="desktop">
                 <span>Olá, {primeiroNome}</span>
-                <img className='sair' src={exit} alt= "Sair" />
+                <img className='sair' src={exit} alt= "Sair" onClick={props.sair} />
             </div>
         </div>
     )
