@@ -1,16 +1,20 @@
 import React from 'react';
+import {Header} from '../componentes/Header';
 
 export const Home = props => {
+
+    const sair = () => {
+         //limpando localStorage para fazer o logout
+         localStorage.removeItem('accessToken');
+         localStorage.removeItem('usuarioNome');
+         localStorage.removeItem('usuarioEmail');
+         props.setAccessToken('');
+    }
+
     return(
         <>
-            <h1>Gerenciador de Tarefas - Home</h1>
-            <a onClick={e => {
-                //limpando localStorage para fazer o logout
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('usuarioNome');
-                localStorage.removeItem('usuarioEmail');
-                props.setAccessToken('');
-            }}>Sair</a>
+            <Header />
+            
         </>
-    )
+    );
 }
