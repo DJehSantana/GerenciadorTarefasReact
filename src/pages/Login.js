@@ -40,6 +40,7 @@ export const Login = props => {
         } catch (e) {
             //verificando se o e tem response data e erro
             if(e?.response?.data?.erro) {
+                //atribuindo erro a mensagem de erro
                 setMsgErro(e.response.data.erro);
             }
             console.log(e);            
