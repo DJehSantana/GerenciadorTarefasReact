@@ -10,11 +10,11 @@ export const Home = props => {
          localStorage.removeItem('usuarioEmail');
          props.setAccessToken('');
     }
+    //a função sair será enviada como props para o componente header
 
     return(
-        <>
-            <Header sair= {sair}/>
-            
+        <>            
+            <Header sair= {sair}/>            
         </>
     );
 }
