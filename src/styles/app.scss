@@ -16,7 +16,7 @@
 
 //importando a fonte
 @font-face {
-    font-family: 'Bieannale Regular';
+    font-family: 'Biennale Regular';
     font-style: normal;
     font-weight: normal;
     src: url('../assets/fontes/Biennale/Biennale\ Regular.otf') format('opentype');
@@ -24,12 +24,12 @@
 
 html{
     height: 100%;
-    font-family: 'Bieannale Regular';
+    font-family: 'Biennale Regular';
 }
 
 body {
     height: 100%;
-    font-family: 'Bieannale Regular';
+    font-family: 'Biennale Regular';
 }
 
 //div principal
@@ -46,6 +46,41 @@ body {
     align-items: center;
     padding: 0px;
 }
+
+input, select {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: $primaryColor;
+    max-width: 220px;
+    background-color: transparent;
+    font-family: 'Biennale Regular';    
+    border-bottom-style: solid;
+    border-color: $mediumGreyColor;
+    outline: none;
+
+    &:focus {
+        border-color: $primaryColor;
+    }
+
+    &::placeholder { //Chrome, Firefox, Opera, Safari 10+
+        color: $mediumGreyColor;
+        opacity: 1;
+    }
+    &::-ms-input-placeholder { //Microsoft Edge
+        color: $mediumGreyColor;
+        opacity: 0.5;  
+    }
+}
+
+@media screen and (min-width:992px) {
+    input, select {
+        border-width: 0.5px;
+        border-radius: 8px;
+        padding: 5px;
+    }
+}
+
 
 
 

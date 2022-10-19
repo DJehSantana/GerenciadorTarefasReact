@@ -16,19 +16,17 @@ export const Filtros = () => {
                     <div> 
                         <label>até: </label>
                         <input type="date" />
-                    </div>            
+                    </div>           
                  
-
-                    <div className='line'> 
-                        <div>
-                            <label>Status:</label>
-                            <select> 
-                                <option value={0}>Todas</option>
-                                <option value={1}>Pendentes</option>
-                                <option value={2}>Concluídas</option>
-                            </select> 
-                        </div>           
-                    </div>  
+                    <div>
+                        <label>Status:</label>
+                        <select> 
+                            <option value={0}>Todas</option>
+                            <option value={1}>Pendentes</option>
+                            <option value={2}>Concluídas</option>
+                        </select> 
+                    </div>           
+                      
 
                 </div>               
                 

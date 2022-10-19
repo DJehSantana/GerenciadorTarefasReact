@@ -33,7 +33,7 @@
     }
 
     @media screen and (min-width:992px) {
-        padding: 20px;
+        padding: 18px;
 
         .title {
             img {
@@ -43,6 +43,21 @@
             .form {
                 display: flex;
                 flex-direction: row;
+                justify-content: center;
+
+                label {
+                    color: $primaryColor;
+                    font-size: 15px;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    margin-bottom: 0px;
+                }
+
+                input, select {                    
+                    border-color: $primaryColor;
+                    min-width: 130px;
+                }
+              
             }
 
         }
