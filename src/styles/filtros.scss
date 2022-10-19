@@ -1,0 +1,52 @@
+@import './config.scss';
+
+.container-filtros {
+    width: 95%;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: $lightGreyColor;
+    border-radius: 12px;
+    padding: 10px;
+
+    .title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;  
+        justify-content: space-between;
+        
+        span {
+            font-size: 18px;
+            color: $primaryColor;
+            letter-spacing: 0.01em;  
+            font-weight: bold;          
+        }
+
+        img {
+            cursor: pointer;
+        }
+
+        .form {
+            display: none;
+        }
+
+    }
+
+    @media screen and (min-width:992px) {
+        padding: 20px;
+
+        .title {
+            img {
+                display: none;
+            }
+
+            .form {
+                display: flex;
+                flex-direction: row;
+            }
+
+        }
+
+        
+    }
+}

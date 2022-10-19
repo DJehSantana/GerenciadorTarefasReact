@@ -1,5 +1,6 @@
 import React from 'react';
-import {Header} from '../componentes/Header';
+import { Filtros } from '../componentes/Filtros';
+import { Header } from '../componentes/Header';
 
 export const Home = props => {
 
@@ -14,7 +15,8 @@ export const Home = props => {
 
     return(
         <>            
-            <Header sair= {sair}/>            
+            <Header sair= {sair}/>  
+            <Filtros />          
         </>
     );
 }

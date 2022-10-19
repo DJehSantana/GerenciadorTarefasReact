@@ -42,6 +42,8 @@ export const Login = props => {
             if(e?.response?.data?.erro) {
                 //atribuindo erro a mensagem de erro
                 setMsgErro(e.response.data.erro);
+            } else {
+                setMsgErro('500 - Não foi possível realizar o login!')
             }
             console.log(e);            
         }
@@ -58,11 +60,7 @@ export const Login = props => {
             />
 
             <form>
-                {msgErro && <p>{msgErro}</p>}
-                {//componente dos inputs
-                }
-
-                <Input 
+               <Input 
                  srcImg = {mail} 
                  altImg = "Icone email" 
                  inputType = "text" 
@@ -82,6 +80,8 @@ export const Login = props => {
                  setValue = {setSenha}
                  />
 
+                {msgErro && <p>{msgErro}</p>}
+                
                 {//quando o usuário clicar no botão entrar, ele vai desabilitar o clique por 3 segundos e vai 
                 //colocar a mensagem de carregando no botão
                 }
