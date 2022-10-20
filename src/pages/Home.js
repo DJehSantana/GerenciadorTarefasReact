@@ -1,6 +1,8 @@
 import React from 'react';
+//importando componentes da Home
 import { Filtros } from '../componentes/Filtros';
 import { Header } from '../componentes/Header';
+import { Listagem } from '../componentes/Listagem';
 
 export const Home = props => {
 
@@ -16,7 +18,8 @@ export const Home = props => {
     return(
         <>            
             <Header sair= {sair}/>  
-            <Filtros />          
+            <Filtros />  
+            <Listagem />        
         </>
     );
 }
