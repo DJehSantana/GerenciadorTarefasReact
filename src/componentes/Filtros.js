@@ -16,7 +16,7 @@ export const Filtros = () => {
 
                 <div className='form'> 
                     <div>
-                        <label>Conclusão de: </label>
+                        <label>Período de: </label>
                         <input type="date" />            
                     </div> 
                     <div> 
@@ -41,7 +41,7 @@ export const Filtros = () => {
             {showFilters === true && (
                 <div className='filtros-mobile'> 
                     <div>
-                        <label>Conclusão de: </label>
+                        <label>Período de: </label>
                         <input type="date" />            
                     </div> 
                     <div> 

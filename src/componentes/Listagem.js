@@ -14,7 +14,7 @@ export const Listagem = props => {
 
                 //se tiver tarefas vai usar o map para passar cada tarefa como props 
                 //para o componente Item, do contrário exibe imagem sem tarefa
-                tarefas?.map(tarefa => <Item tarefa={tarefa}/>)
+                tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id}/> )
                 : 
                 <>
                     <img src={imgVazio} alt= 'Você não tem tarefas listadas' />
