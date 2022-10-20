@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../assets/icones/Logo.svg';
 import exit from '../assets/icones/exit.svg';
+import adicionar from '../assets/icones/adicionar.svg';
 
 export const Header = props => {
 
@@ -11,7 +12,7 @@ export const Header = props => {
     return (
         <div className="container-header">
             <img className="logo" src={logo} alt= "Logo Devaria"/>
-            <button><span>+</span> Adicionar tarefa</button>
+            <button> <img src={adicionar} alt= "Adicionar tarefa" />Adicionar tarefa</button>
             <div className="mobile">
                 <span>Olá, {primeiroNome}</span>
                 <img className='sair' src={exit} alt= "Sair" onClick={props.sair} />

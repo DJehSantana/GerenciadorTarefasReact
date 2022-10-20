@@ -1,6 +1,7 @@
 import React from 'react';
 //importando componentes da Home
 import { Filtros } from '../componentes/Filtros';
+import { Footer } from '../componentes/Footer';
 import { Header } from '../componentes/Header';
 import { Listagem } from '../componentes/Listagem';
 
@@ -19,7 +20,8 @@ export const Home = props => {
         <>            
             <Header sair= {sair}/>  
             <Filtros />  
-            <Listagem />        
+            <Listagem />
+            <Footer />        
         </>
     );
 }

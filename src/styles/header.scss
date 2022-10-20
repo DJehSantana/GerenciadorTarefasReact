@@ -30,27 +30,29 @@
         cursor: pointer;
     }
 
+    .mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 15px;
+        
+        .sair {
+            width: 28px;
+            height: 28px;
+        }
+    
+        
+        span {
+            font-size: 14px;
+            color: $primaryColor;
+            margin-right: 8px;
+        }
+    }
+
         
 }
 
-.mobile {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 15px;
-    
-    .sair {
-        width: 28px;
-        height: 28px;
-    }
 
-    
-    span {
-        font-size: 14px;
-        color: $primaryColor;
-        margin-right: 8px;
-    }
-}
 
 @media screen and (min-width: 992px) {
 
@@ -85,22 +87,22 @@
         }
         
         button {
-            display: block;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
             border: solid 2px $primaryColor;
             border-radius: 12px;
-            width: 150px;
+            width: 200px;
             height: 40px;
             padding: 2px;
             cursor: pointer;
-            text-align: center;
             align-items: center;
             font-size: 16px;
             color: $primaryColor;
             margin-left: 150px;
 
-            span {
-                font-size: 18px;
-                font-weight: bold;
+            img {
+                margin-right: 8px;
             }   
 
         }
