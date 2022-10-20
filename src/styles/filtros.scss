@@ -32,8 +32,37 @@
 
     }
 
+    .filtros-mobile {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin-top: 10px;
+
+        div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+           
+        }
+        label {
+            color: $primaryColor;                 
+            font-size: 0.9em;
+            padding: 5px;
+            width: 120px;
+            margin-left: 5px;              
+        }
+        input, select {
+            margin-bottom: 5px;
+            width: 150px;
+        }
+    }
+
     @media screen and (min-width:992px) {
         padding: 18px;
+
+        .filtros-mobile {
+            display: none;
+        }
 
         .title {
             img {

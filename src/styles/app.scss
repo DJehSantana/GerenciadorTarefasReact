@@ -61,7 +61,11 @@ input, select {
     color: $primaryColor;
     max-width: 220px;
     background-color: transparent;
-    font-family: 'Biennale Regular';    
+    border-left-width: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    font-family: 'Biennale Regular';
     border-bottom-style: solid;
     border-color: $mediumGreyColor;
     outline: none;
