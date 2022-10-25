@@ -12,13 +12,13 @@ export const Home = props => {
         {
             id: '632d8bb8e8e11f5cabc4b005',
             nome: 'Tarefa Teste',
-            dataPrevistaConclusao: '2022-10-15T00:00:00.000Z',
+            dataPrevistaConclusao: '2022-10-25',
             dataConclusao: '2022-10-05'            
         },
         {
             id: '632d8c57e8e11f5cabc4b00a',
             nome: 'concluida',
-            dataPrevistaConclusao: 'Date(2022-09-29',
+            dataPrevistaConclusao: '2022-10-29',
             dataConclusao: null,
         }
     ]);    
