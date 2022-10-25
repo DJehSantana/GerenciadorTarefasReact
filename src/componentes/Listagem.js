@@ -8,7 +8,7 @@ export const Listagem = props => {
     const {tarefas} = props;
 
     return (
-        <div className='container-listagem'>
+        <div className={"container-listagem" + (tarefas && tarefas.length > 0 ? "" : "vazia")}>
 
             { tarefas && tarefas.length > 0 ? 
 
