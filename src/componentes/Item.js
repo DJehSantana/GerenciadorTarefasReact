@@ -22,7 +22,7 @@ export const Item = props => {
 
 
     return (
-        <div className="container-item">
+        <div className={"container-item " + (dataConclusao ? "" : "ativo")}>
             <img src= {dataConclusao ? concluido : naoConcluido} 
             alt= {dataConclusao ? "Tarefa concluida" : "Selecionar tarefa"} />
             <div>
