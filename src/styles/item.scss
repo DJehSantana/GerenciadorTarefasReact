@@ -22,6 +22,10 @@
             color: $darkGreyColor;
             font-weight: bold;
             font-size: 14px;
+
+            &.concluida {
+                text-decoration: line-through;
+            }
         }
 
         span {
