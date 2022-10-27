@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import filtro from '../assets/icones/filtro.svg';
 
-export const Filtros = () => {
+export const Filtros = props => {
+
+    const {inicio, conclusao, status, setInicio, setConclusao, setStatus} = props
 
     //useState quando for true vai exibir os filtros no mobile
     //onclick - quando a img for clicada vai inverter o estado do showFilters
@@ -17,16 +19,17 @@ export const Filtros = () => {
                 <div className='form'> 
                     <div>
                         <label>Período de: </label>
-                        <input type="date" />            
+                        <input type="date" value={inicio} onChange= {evento => setInicio(evento.target.value)}/>            
                     </div> 
                     <div> 
                         <label>até: </label>
-                        <input type="date" />
+                        <input type="date" value={conclusao} onChange= {evento => setConclusao(evento.target.value)} />
                     </div>           
                  
                     <div>
                         <label>Status:</label>
-                        <select> 
+                        <select
+                            value={status} onChange= {evento => setStatus(evento.target.value)}> 
                             <option value={0}>Todas</option>
                             <option value={1}>Pendentes</option>
                             <option value={2}>Concluídas</option>
