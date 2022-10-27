@@ -12,6 +12,10 @@ const instance = axios.create ({
 
 //função que será utilizada para executar qualquer requisição
 export const executaRequisicao = (endPoint, metodo, body) => {
+
+    //pega o token armazenado no localStorage
+    const accessToken = localStorage.getItem('accessToken');
+
     //printando parametros recebidos na chamada da função
     console.log(`Executando: ${URL}${endPoint}, metodo: ${metodo}, body: ${body}`);
 

@@ -1,28 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 //importando componentes da Home
 import { Filtros } from '../componentes/Filtros';
 import { Footer } from '../componentes/Footer';
 import { Header } from '../componentes/Header';
 import { Listagem } from '../componentes/Listagem';
+import { executaRequisicao } from '../services/api';
 
 export const Home = props => {
 
     
-    const [tarefas, setTarefas] = useState([
-        {
-            id: '632d8bb8e8e11f5cabc4b005',
-            nome: 'Tarefa Teste',
-            dataPrevistaConclusao: '2022-10-25',
-            dataConclusao: null            
-        },
-        {
-            id: '632d8c57e8e11f5cabc4b00a',
-            nome: 'Concluida',
-            dataPrevistaConclusao: '2022-10-10',
-            dataConclusao: '2022-10-05'
-        }
-    ]);    
+    const [tarefas, setTarefas] = useState([]); 
+    
+    //conectando com a API de tarefas
+    const getTarefasComFiltro = async () => {
+        try {
+            //buscando filtro de tarefas rota: tarefa, mátodo: get
+            const resultado = await executaRequisicao ('tarefa', 'get');
 
+            if (resultado && resultado.data) {
+                setTarefas(resultado.data);
+            }
+        } catch (e) {
+            console.log('erro: ' + e);
+        }
+    }
+
+    //chamando o método getTarefas no carregamento
+    useEffect(() => {
+        getTarefasComFiltro()
+    }, []);
 
     const sair = () => {
          //limpando localStorage para fazer o logout
