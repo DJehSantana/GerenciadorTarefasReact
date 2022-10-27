@@ -16,12 +16,22 @@ export const executaRequisicao = (endPoint, metodo, body) => {
     //pega o token armazenado no localStorage
     const accessToken = localStorage.getItem('accessToken');
 
+    //montando headers
+    let headers = {'Content-Type' : 'application/json'};
+
+    //verificando se tem token autorização
+    if (accessToken) {
+        //se tiver monta no header a authorization com o token
+        headers['Authorization'] = 'Bearer ' + accessToken;
+    }
+
     //printando parametros recebidos na chamada da função
-    console.log(`Executando: ${URL}${endPoint}, metodo: ${metodo}, body: ${body}`);
+    console.log(`Executando: ${URL}${endPoint}, metodo: ${metodo}, body: ${body}, headers ${headers}`);
 
     return instance.request({
         url: endPoint,
         method: metodo,
-        data: body? body : ''
+        data: body? body : '',
+        headers: headers
     });
 }
