@@ -14,13 +14,14 @@ export const Item = props => {
     //função para gerenciar texto a ser exibido da data de conclusão da tarefa
     const getDataTexto = (dtConclusao, dtPrevisao) => {
         if (dtConclusao) {
+            //o moment formata como será exibida a data
             return `Concluído em: ${moment(dtConclusao).format('DD/MM/yyyy')}`
         } else {
             return `Previsão de conclusão em: ${moment(dtPrevisao).format('DD/MM/yyyy')}`
         }
     };
 
-
+    // os elementos e classes mudam de acordo a se a tarefa está concluida ou não
     return (
         <div className={"container-item " + (dataConclusao ? "" : "ativo")}>
             <img src= {dataConclusao ? concluido : naoConcluido} 
