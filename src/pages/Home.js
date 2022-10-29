@@ -80,6 +80,7 @@ export const Home = props => {
             //limpando campos e fechando o modal
             setNomeTarefa('');
             setDataPrevistaConclusao('');
+            setMsgErro('');
             setShowModal(false);
 
             //chamando filtro de tarefas
@@ -106,7 +107,8 @@ export const Home = props => {
 
     return(
         <>            
-            <Header sair= {sair}/>  
+            <Header sair= {sair}
+                showModal={() => setShowModal(true)}/>  
             <Filtros 
                 inicio= {inicio}
                 conclusao= {conclusao}

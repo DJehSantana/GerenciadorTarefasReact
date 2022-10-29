@@ -5,6 +5,9 @@ import adicionar from '../assets/icones/adicionar.svg';
 
 export const Header = props => {
 
+    //recebendo showModal na props
+    const {showModal} = props;
+
     const nomeCompleto = localStorage.getItem('usuarioNome');
     //split-separa a string em elementos de um array/pega o primeiro elemento 
     const primeiroNome = nomeCompleto?.split(' ')[0] || ' ';
@@ -12,7 +15,7 @@ export const Header = props => {
     return (
         <div className="container-header">
             <img className="logo" src={logo} alt= "Logo Devaria"/>
-            <button> <img src={adicionar} alt= "Adicionar tarefa" />Adicionar tarefa</button>
+            <button onClick={showModal}> <img src={adicionar} alt= "Adicionar tarefa" />Adicionar tarefa</button>
             <div className="mobile">
                 <span>Olá, {primeiroNome}</span>
                 <img className='sair' src={exit} alt= "Sair" onClick={props.sair} />
