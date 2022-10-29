@@ -5,23 +5,14 @@
 //importando as variáveis da paleta de cores do site
 @import './config.scss';
 
-//importando o arquivo de estilos do Login
+//importando os arquivos de estilos 
 @import './login.scss';
-
-//importando o arquivo de estilos do header
 @import './header.scss';
-
-//importando o arquivo de estilos dos filtros
 @import './filtros.scss';
-
-//importando o arquivo de estilos da listagem das tarefas
 @import './listagem.scss';
-
-//importando o arquivo de estilos do footer
 @import './footer.scss';
-
-//importando o arquivo de estilos dos itens
 @import './item.scss';
+@import './modal.scss';
 
 
 //importando a fonte
@@ -85,6 +76,13 @@ input, select {
         color: $mediumGreyColor;
         opacity: 0.5;  
     }
+}
+
+.error{
+    text-align: center;
+    color: $errorColor;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 @media screen and (min-width:992px) {

@@ -80,7 +80,7 @@ export const Login = props => {
                  setValue = {setSenha}
                  />
 
-                {msgErro && <p>{msgErro}</p>}
+                {msgErro && <p className='error'>{msgErro}</p>}
                 
                 {//quando o usuário clicar no botão entrar, ele vai desabilitar o clique por 3 segundos e vai 
                 //colocar a mensagem de carregando no botão

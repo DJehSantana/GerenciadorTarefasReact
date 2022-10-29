@@ -17,6 +17,9 @@ export const Home = props => {
 
     //States dos modais
     const [showModal, setShowModal] = useState(false);
+    const [nomeTarefa, setNomeTarefa] = useState('');
+    const [dataPrevistaConclusao, setDataPrevistaConclusao] = useState('');
+    const [msgErro, setMsgErro] = useState('');
     
     //função para alterar State do modal
     const toggleModal = () => {
@@ -55,6 +58,43 @@ export const Home = props => {
         getTarefasComFiltro()
     }, [status, inicio, conclusao]);
 
+    //função para chamar método cadastrar da tarefa na API
+    const salvarTarefa = async () => {
+
+        try {
+            //tratamento de erro
+            if(!nomeTarefa || !dataPrevistaConclusao ) {
+                setMsgErro('Favor informar corretamente nome e data');
+                return
+            }
+            //atribuindo valor dos inputs as propriedades do body que será enviado 
+            //como parâmetro para cadastro da tarefa
+            const body = {
+                nome : nomeTarefa,
+                dataPrevistaConclusao : dataPrevistaConclusao
+            }
+
+            //caso dados sejam preenchidos corretamente executa requisição de cadastro da tarefa
+            await executaRequisicao('tarefa', 'post', body);
+            
+            //limpando campos e fechando o modal
+            setNomeTarefa('');
+            setDataPrevistaConclusao('');
+            setShowModal(false);
+
+            //chamando filtro de tarefas
+            await getTarefasComFiltro();
+            
+        } catch (e) {
+            console.log(e);
+            if(e?.response?.data?.erro) {
+                setMsgErro(e.response.data.erro);
+            } else {
+                setMsgErro('Não foi possível cadastrar a tarefa, fale com o administrador');
+            }
+        }
+    }
+
     const sair = () => {
          //limpando localStorage para fazer o logout
          localStorage.removeItem('accessToken');
@@ -77,12 +117,29 @@ export const Home = props => {
                 />  
             <Listagem tarefas= {tarefas} />
             <Footer showModal={() => setShowModal(true)}/> 
-            <Modal show={showModal} onHide={toggleModal}>
+            <Modal show={showModal} onHide={toggleModal} className="container-modal">
                 <Modal.Body>
                     <p>Adicionar uma tarefa</p>
+                    {msgErro && <span className='error'>{msgErro}</span>}
+                    <div className="inputs col-12">
+                        <input type="text" name="nome"
+                        placeholder="Nome da tarefa" value={nomeTarefa} 
+                        onChange={evento => setNomeTarefa(evento.target.value)}/>
+                        <input type="text" name="dataPrevistaConclusao"
+                        placeholder="Data prevista de conclusão" value={dataPrevistaConclusao}
+                        onChange={evento => setDataPrevistaConclusao(evento.target.value)}
+                        onFocus={evento => evento.target.type = 'date'}
+                        onBlur={evento => dataPrevistaConclusao ? evento.target.type = 'date' : evento.target.type = 'text'}/>
+                    </div>                    
                 </Modal.Body>
                 <Modal.Footer>
-
+                    <button onClick={salvarTarefa}>Salvar</button>
+                    <button onClick={() => {
+                        setShowModal(false)
+                        setMsgErro('')
+                        setNomeTarefa('')
+                        setDataPrevistaConclusao('')
+                    }}>Cancelar</button>
                 </Modal.Footer>
             </Modal>       
         </>
