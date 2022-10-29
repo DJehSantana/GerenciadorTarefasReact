@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Modal} from 'react-bootstrap';
 //importando componentes da Home
 import { Filtros } from '../componentes/Filtros';
 import { Footer } from '../componentes/Footer';
@@ -8,11 +9,19 @@ import { executaRequisicao } from '../services/api';
 
 export const Home = props => {
 
-    
+    //Sates dos filtros das tarefas
     const [tarefas, setTarefas] = useState([]); 
     const [inicio, setInicio] = useState('');
     const [conclusao, setConclusao] = useState('');
     const [status, setStatus] = useState(0);
+
+    //States dos modais
+    const [showModal, setShowModal] = useState(false);
+    
+    //função para alterar State do modal
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    }
     
     //conectando com a API de tarefas
     const getTarefasComFiltro = async () => {
@@ -21,12 +30,13 @@ export const Home = props => {
             //filtros inicia recebendo o status 
             let filtros = '?status='+status;
 
+            //se tiver parâmetros de filtragem para data de início e conclusão, adiciona nos filtros
             if (inicio) {
                 filtros += '&inicio='+inicio;
             }
 
             if (conclusao) {
-                filtros += 'conclusao='+conclusao
+                filtros += '&conclusao='+conclusao
             }
            
             //buscando filtro de tarefas rota: tarefa, mátodo: get
@@ -66,7 +76,15 @@ export const Home = props => {
                 setStatus= {setStatus}
                 />  
             <Listagem tarefas= {tarefas} />
-            <Footer />        
+            <Footer showModal={() => setShowModal(true)}/> 
+            <Modal show={showModal} onHide={toggleModal}>
+                <Modal.Body>
+                    <p>Adicionar uma tarefa</p>
+                </Modal.Body>
+                <Modal.Footer>
+
+                </Modal.Footer>
+            </Modal>       
         </>
     );
 }
