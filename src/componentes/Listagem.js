@@ -33,7 +33,7 @@ export const Listagem = props => {
 
                     //se tiver tarefas vai usar o map para passar cada tarefa como props 
                     //para o componente Item, do contrário exibe imagem sem tarefa
-                    tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id}/> )
+                    tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id} selecionarTarefa={selecionarTarefa}/> )
                     : 
                     <>
                         <img src={imgVazio} alt= 'Você não tem tarefas listadas' />
@@ -68,12 +68,14 @@ export const Listagem = props => {
                 </Modal.Body>
                 <Modal.Footer>
                     <button>Salvar</button>
+                    <button>Excluir Tarefa</button>
                     <button onClick={() => {
                         setShowModal(false)
                         setMsgErro('')
                         setNomeTarefa('')
                         setDataPrevistaConclusao('')
                     }}>Cancelar</button>
+                    
                 </Modal.Footer>
             </Modal>
         </>

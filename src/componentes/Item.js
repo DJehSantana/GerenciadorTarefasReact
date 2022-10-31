@@ -8,6 +8,7 @@ export const Item = props => {
     //recebe o objeto tarefa como props da API e faz o destructor
     const { tarefa } = props;
     //pega os dados a serem utilizados da tarefa
+    const {selecionarTarefa} = props;
     const {dataPrevistaConclusao, dataConclusao, nome} = tarefa;
 
 
@@ -23,7 +24,8 @@ export const Item = props => {
 
     // os elementos e classes mudam de acordo a se a tarefa está concluida ou não
     return (
-        <div className={"container-item " + (dataConclusao ? "" : "ativo")}>
+        <div className={"container-item " + (dataConclusao ? "" : "ativo")} 
+            onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}>
             <img src= {dataConclusao ? concluido : naoConcluido} 
             alt= {dataConclusao ? "Tarefa concluida" : "Selecionar tarefa"} />
             <div>
