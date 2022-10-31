@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import moment from 'moment';
 import imgVazio from '../assets/icones/imgvazio.svg';
 import { Item } from './Item';
 
@@ -20,8 +21,8 @@ export const Listagem = props => {
     const selecionarTarefa = tarefa => {
         setIdTarefa(tarefa.id);
         setNomeTarefa(tarefa.nome);
-        setDataPrevistaConclusao(tarefa.dataPrevistaConclusao);
-        setDataConclusao(tarefa.dataConclusao);
+        setDataPrevistaConclusao(moment(tarefa.dataPrevistaConclusao).format('yyyy MM DD'));
+        setDataConclusao(moment(tarefa.dataConclusao).format('yyyy MM DD'));
         setShowModal(true);
     }
 
