@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import moment from 'moment';
 import imgVazio from '../assets/icones/imgvazio.svg';
+import { executaRequisicao } from '../services/api';
 import { Item } from './Item';
 
 export const Listagem = props => {
     
     //quando vierem tarefas da API pelo props, vai desconstruí-las e atribuir a tarefas
-    const {tarefas} = props;
+    const {tarefas, getTarefasComFiltro} = props;
 
     //states do modal
     const [showModal, setShowModal] = useState(false);
@@ -26,6 +27,46 @@ export const Listagem = props => {
         setShowModal(true);
     }
 
+    const atualizarTarefa = async () => {
+
+        try {
+            //tratamento de erro
+            if(!nomeTarefa || !dataPrevistaConclusao ) {
+                setMsgErro('Favor informar corretamente nome e data');
+                return
+            }
+            //atribuindo valor dos inputs as propriedades do body que será enviado 
+            //como parâmetro para cadastro da tarefa
+            const body = {
+                nome : nomeTarefa,
+                dataPrevistaConclusao : dataPrevistaConclusao,
+                dataConclusao : dataConclusao
+            }
+
+            //caso dados sejam preenchidos corretamente executa requisição de cadastro da tarefa
+            await executaRequisicao('tarefa/'+idTarefa, 'put', body);
+            
+            //limpando campos e fechando o modal
+            setIdTarefa('');
+            setNomeTarefa('');
+            setDataPrevistaConclusao('')
+            setDataConclusao('');
+            setMsgErro('');
+            setShowModal(false);
+
+            //chamando filtro de tarefas
+            await getTarefasComFiltro();
+            
+        } catch (e) {
+            console.log(e);
+            if(e?.response?.data?.erro) {
+                setMsgErro(e.response.data.erro);
+            } else {
+                setMsgErro('Não foi possível atualizar a tarefa, fale com o administrador');
+            }
+        }
+    }
+
     return (
         <>
             <div className={"container-listagem " + (tarefas && tarefas.length > 0 ? "" : "vazia")}>
@@ -41,10 +82,7 @@ export const Listagem = props => {
                         <p>Você ainda não possui tarefas cadastradas!</p>
                     </>                
                 }            
-            </div>
-
-            {// modal para alteração de tarefas
-}    
+            </div>    
             <Modal show={showModal} onHide={setShowModal(false)} className="container-modal">
                 <Modal.Body>
                     <p>Alterar uma tarefa</p>
@@ -68,7 +106,7 @@ export const Listagem = props => {
                     </div>                    
                 </Modal.Body>
                 <Modal.Footer>
-                    <button>Salvar</button>
+                    <button onClick={atualizarTarefa}>Salvar</button>
                     <button>Excluir Tarefa</button>
                     <button onClick={() => {
                         setShowModal(false)

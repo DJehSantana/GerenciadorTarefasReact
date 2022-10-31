@@ -117,7 +117,7 @@ export const Home = props => {
                 setConclusao= {setConclusao}
                 setStatus= {setStatus}
                 />  
-            <Listagem tarefas= {tarefas} />
+            <Listagem tarefas= {tarefas} getTarefasComFiltro= {getTarefasComFiltro} />
             <Footer showModal={() => setShowModal(true)}/> 
             <Modal show={showModal} onHide={toggleModal} className="container-modal">
                 <Modal.Body>
