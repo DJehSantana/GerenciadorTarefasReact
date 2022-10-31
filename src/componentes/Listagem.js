@@ -21,10 +21,11 @@ export const Listagem = props => {
 
     //função que ativa edição da tarefa
     const selecionarTarefa = tarefa => {
+        setMsgErro('');
         setIdTarefa(tarefa.id);
         setNomeTarefa(tarefa.nome);
         setDataPrevistaConclusao(moment(tarefa.dataPrevistaConclusao).format('yyyy-MM-DD'));
-        setDataConclusao(moment(tarefa.dataConclusao).format('yyyy-MM-DD'));
+        setDataConclusao(tarefa.dataConclusao);
         setShowModal(true);
     }
 
@@ -48,7 +49,7 @@ export const Listagem = props => {
             await executaRequisicao('tarefa/'+idTarefa, 'put', body);
             
             //limpando campos e fechando o modal
-            setIdTarefa('');
+            setIdTarefa(null);
             setNomeTarefa('');
             setDataPrevistaConclusao('')
             setDataConclusao('');
@@ -68,6 +69,35 @@ export const Listagem = props => {
         }
     } 
 
+    const deletarTarefa = async () => {
+
+        try {
+            //tratamento de erro
+            if(!idTarefa ) {
+                setMsgErro('Favor informar a tarefa a ser excluída');
+                return
+            }
+           
+            //caso dados sejam preenchidos corretamente executa requisição de cadastro da tarefa
+            await executaRequisicao('tarefa/'+idTarefa, 'delete');
+            
+            setMsgErro('');
+            setShowModal(false);
+
+            //chamando filtro de tarefas
+            await getTarefasComFiltro();
+            
+        } catch (e) {
+            console.log(e);
+            if(e?.response?.data?.erro) {
+                setMsgErro(e.response.data.erro);
+            } else {
+                setMsgErro('Não foi possível excluir a tarefa, fale com o administrador');
+            }
+        }
+    } 
+
+
     return (
             <>
                 <div className={"container-listagem " + (tarefas && tarefas.length > 0 ? "" : "vazia")}>
@@ -76,7 +106,9 @@ export const Listagem = props => {
 
                         //se tiver tarefas vai usar o map para passar cada tarefa como props 
                         //para o componente Item, do contrário exibe imagem sem tarefa
-                        tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id} selecionarTarefa={selecionarTarefa} /> )
+                        tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id} 
+                            selecionarTarefa={selecionarTarefa} deletarTarefa={deletarTarefa} 
+                            msgErro={msgErro} /> )
                         : 
                         <>
                             <img src={imgVazio} alt= 'Você não tem tarefas listadas' />
@@ -88,7 +120,7 @@ export const Listagem = props => {
 
                 <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
                     <Modal.Body>
-                        <p>Adicionar uma tarefa</p>
+                        <p>Alterar tarefa</p>
                         {msgErro && <span className='error'>{msgErro}</span>}
                         <div className="inputs col-12">
                             <input type="text" name="nome"
@@ -110,6 +142,7 @@ export const Listagem = props => {
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={atualizarTarefa}>Salvar</button>
+                       
                         <button onClick={() => {
                             setShowModal(false)                           
                         }}>Cancelar</button>
