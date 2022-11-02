@@ -22,7 +22,7 @@
             }
 
             img {
-                width: 48px;
+                width: 40px;
             }
 
         }
@@ -68,8 +68,12 @@
             font-size: 17px;
         }
 
-        button {
-            font-size: 16px;
+        .modal-icons{
+            button {
+                img {
+                    width: 48px;
+                }
+            }
         }
     }
 }
