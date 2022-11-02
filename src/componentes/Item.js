@@ -6,15 +6,16 @@ import concluido from '../assets/icones/checked.svg';
 export const Item = props => {
 
     //recebe o objeto tarefa como props da API e faz o destructor
-    const { tarefa, selecionarTarefa} = props;
+    const { tarefa, selecionarTarefa, showModal } = props;
     //pega os dados a serem utilizados da tarefa
-    const { deletarTarefa, msgErro} = props;
-    const {dataPrevistaConclusao, dataConclusao, nome} = tarefa;
+    //const { deletarTarefa } = props;
+    //const { msgErro } = props;
+    const { dataPrevistaConclusao, dataConclusao, nome } = tarefa;
 
-    const [Erro, setErro] = useState('');
+    //const [Erro, setErro] = useState('');
 
-    const [showModal, setShowModal] = useState(false);
-    
+    //const [showModal, setShowModal] = useState(false);
+
     //função para gerenciar texto a ser exibido da data de conclusão da tarefa
     const getDataTexto = (dtConclusao, dtPrevisao) => {
         if (dtConclusao) {
@@ -25,46 +26,28 @@ export const Item = props => {
         }
     };
 
-    const verificaErros = () => {
-        if (msgErro) {
-            setErro(msgErro);
-        }
-    }
+    //const verificaErros = () => {
+        //if (msgErro) {
+            //setErro(msgErro);
+        //}
+    //}
 
-    
+
     // os elementos e classes mudam de acordo a se a tarefa está concluida ou não
     return (
-        <div className={"container-item " + (dataConclusao ? "" : "ativo")} 
+        <div className={"container-item " + (dataConclusao ? "" : "ativo")}
             onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}>
             <div>
-                {dataConclusao && <img src= {concluido} alt="Tarefa concluida" /> }
-            
-                <p className={dataConclusao? "concluida" : ""}>{nome}</p>
-                <span>{getDataTexto(dataConclusao, dataPrevistaConclusao)}</span>                
+                {dataConclusao && <img src={concluido} alt="Tarefa concluida" />}
+
+                <p className={dataConclusao ? "concluida" : ""}>{nome}</p>
+                <span>{getDataTexto(dataConclusao, dataPrevistaConclusao)}</span>
             </div>
             <div className="atualizar-deletar">
-                    <button onClick={() => setShowModal(true)}>Deletar</button>
-                    <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
-                    <Modal.Body>
-                        <p>Tem certeza que deseja excluir essa tarefa?</p>
-                        {Erro && <span className='error'>{Erro}</span>}
-                                     
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <button onClick={() => {
-                            verificaErros()
-                            deletarTarefa(tarefa)
-                        }}>Sim</button>
-                       
-                        <button onClick={() => {
-                            setShowModal(false)
-                            setErro('');
-                            }}>Cancelar</button>
-                    </Modal.Footer>
-                </Modal>  
+                <button>Deletar</button>
 
-                    
             </div>
+            
 
         </div>
     )
