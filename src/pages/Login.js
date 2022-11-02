@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Modal} from 'react-bootstrap';
 import logo from '../assets/icones/Logo.svg';
 import mail from '../assets/icones/mail.svg';
 import lock from '../assets/icones/lock.svg';
@@ -11,6 +12,8 @@ export const Login = props => {
     const [senha, setSenha] = useState ('');
     const [msgErro, setMsgErro] = useState('');
     const [isLoading, setLoading] = useState(false);
+
+    const [showModal, setShowModal] = useState(false);
     //o React guarda a informação a cada alteração, a variável armazena a informação
     //para testar se o login e senha estão sendo armazenados corretamente:
     //console.log(`login: ${login}, senha: {senha}`);
@@ -87,6 +90,13 @@ export const Login = props => {
                 }
                 <button onClick={executaLogin} disabled= {isLoading}>{isLoading === true ? '...Carregando' : 'Entrar'}</button>
             </form>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
+                <Modal.Body>
+                    <p>Este modal será usado para cadastro de novos usuários</p>                    
+
+                </Modal.Body>                
+            </Modal>
         </div>
     );
 }
