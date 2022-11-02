@@ -21,7 +21,7 @@ export const Listagem = props => {
 
     //função que ativa edição da tarefa
     const selecionarTarefa = tarefa => {
-        setMsgErro('');
+        
         setIdTarefa(tarefa.id);
         setNomeTarefa(tarefa.nome);
         setDataPrevistaConclusao(moment(tarefa.dataPrevistaConclusao).format('yyyy-MM-DD'));

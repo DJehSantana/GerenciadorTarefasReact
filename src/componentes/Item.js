@@ -6,9 +6,9 @@ import concluido from '../assets/icones/checked.svg';
 export const Item = props => {
 
     //recebe o objeto tarefa como props da API e faz o destructor
-    const { tarefa } = props;
+    const { tarefa, selecionarTarefa} = props;
     //pega os dados a serem utilizados da tarefa
-    const {selecionarTarefa, deletarTarefa, msgErro} = props;
+    const { deletarTarefa, msgErro} = props;
     const {dataPrevistaConclusao, dataConclusao, nome} = tarefa;
 
     const [Erro, setErro] = useState('');
