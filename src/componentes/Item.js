@@ -35,8 +35,7 @@ export const Item = props => {
     // os elementos e classes mudam de acordo a se a tarefa está concluida ou não
     return (
         <div className={"container-item " + (dataConclusao ? "" : "ativo")} 
-            onClick={() => dataConclusao ? null : () => {
-                selecionarTarefa(tarefa)}}>
+            onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}>
             <div>
                 {dataConclusao && <img src= {concluido} alt="Tarefa concluida" /> }
             

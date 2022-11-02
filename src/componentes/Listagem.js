@@ -22,6 +22,7 @@ export const Listagem = props => {
     //função que ativa edição da tarefa
     const selecionarTarefa = tarefa => {
         
+        setMsgErro('');
         setIdTarefa(tarefa.id);
         setNomeTarefa(tarefa.nome);
         setDataPrevistaConclusao(moment(tarefa.dataPrevistaConclusao).format('yyyy-MM-DD'));
@@ -106,8 +107,7 @@ export const Listagem = props => {
 
                         //se tiver tarefas vai usar o map para passar cada tarefa como props 
                         //para o componente Item, do contrário exibe imagem sem tarefa
-                        tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id} 
-                            selecionarTarefa={selecionarTarefa} deletarTarefa={deletarTarefa} 
+                        tarefas?.map(tarefa => <Item tarefa={tarefa} key={tarefa.id} selecionarTarefa={selecionarTarefa} deletarTarefa={deletarTarefa} 
                             msgErro={msgErro} /> )
                         : 
                         <>
@@ -120,7 +120,7 @@ export const Listagem = props => {
 
                 <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
                     <Modal.Body>
-                        <p>Alterar tarefa</p>
+                        <p>Altualizar tarefa</p>
                         {msgErro && <span className='error'>{msgErro}</span>}
                         <div className="inputs col-12">
                             <input type="text" name="nome"
