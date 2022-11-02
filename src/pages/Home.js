@@ -8,6 +8,9 @@ import { Header } from '../componentes/Header';
 import { Listagem } from '../componentes/Listagem';
 import { executaRequisicao } from '../services/api';
 
+import imgSave from '../assets/icones/icon-save.png';
+import imgCancel from '../assets/icones/icon-cancel.svg';
+
 export const Home = props => {
 
     //Sates dos filtros das tarefas
@@ -136,13 +139,15 @@ export const Home = props => {
                     </div>                    
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={salvarTarefa}>Salvar</button>
-                    <button onClick={() => {
-                        setShowModal(false)
-                        setMsgErro('')
-                        setNomeTarefa('')
-                        setDataPrevistaConclusao('')
-                    }}>Cancelar</button>
+                    <div className='modal-icons'>                    
+                        <button onClick={salvarTarefa}><img src={imgSave} alt="Salvar tarefa"/></button>
+                        <button onClick={() => {
+                            setShowModal(false)
+                            setMsgErro('')
+                            setNomeTarefa('')
+                            setDataPrevistaConclusao('')
+                        }}> <img src={imgCancel} alt= "Cancelar alterações" /></button>
+                    </div>
                 </Modal.Footer>
             </Modal>       
         </>
