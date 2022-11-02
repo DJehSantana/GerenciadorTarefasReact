@@ -155,7 +155,9 @@ export const Listagem = props => {
             </Modal>
 
 
-{ /*
+{ /*Modal de confirmação de deleção da tarefa, não está ativo pois está abrindo junto com o outro modal quando 
+a tarefa é clicada.
+    
             <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
                 <Modal.Body>
                     <p>Tem certeza que deseja excluir essa tarefa?</p>
