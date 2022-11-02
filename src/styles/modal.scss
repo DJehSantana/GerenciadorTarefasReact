@@ -1,18 +1,31 @@
 @import './config.scss';
 
 .container-modal {
-    margin-top: 100px;    
+    margin-top: 100px;
 
-    button {
-        width: 40%;
-        background-color: $primaryColor;
-        border-color: $primaryColor;
-        cursor: pointer;
-        color: white;
-        border-radius: 12px;
-        font-size: 15px;
-        padding: 10px;
-        margin-left: 10px;
+    .modal-icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        button {
+            cursor: pointer;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: $mediumGreyColor;
+            border-radius: 8px;
+            margin-left: 10px;
+
+            &:hover {
+                opacity: 0.7;
+            }
+
+            img {
+                width: 48px;
+            }
+
+        }
 
     }
 
@@ -40,12 +53,14 @@
 
     .inputs {
         display: flex;
-        flex-direction: column;  
-        justify-content: center;      
+        flex-direction: column;
+        justify-content: center;
     }
 
     @media screen and (min-width:992px) {
-        .modal-body, .modal-footer{
+
+        .modal-body,
+        .modal-footer {
             padding: 25px 40px;
         }
 

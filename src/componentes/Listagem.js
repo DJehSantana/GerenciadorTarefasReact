@@ -2,6 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import moment from 'moment';
+import imgSave from '../assets/icones/icon-save.png';
+import imgCancel from '../assets/icones/icon-cancel.svg';
+import imgDelete from '../assets/icones/icon-delete.png';
 import imgVazio from '../assets/icones/imgvazio.svg';
 import { executaRequisicao } from '../services/api';
 import { Item } from './Item';
@@ -143,15 +146,15 @@ export const Listagem = props => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={atualizarTarefa}></button>
-                    
-
-                    <button onClick={() => {
-                        deletarTarefa()
-                        setShowModal(false)
-                    }}>Cancelar</button>
+                    <div className='modal-icons'>
+                        <button onClick={atualizarTarefa}> <img src={imgSave} alt="Salvar alterações"/></button>                   
+                        <button onClick={() => {setShowModal(false)}}> <img src={imgCancel} alt= "Cancelar alterações" /></button>
+                        <button onClick={deletarTarefa}> <img src={imgDelete} alt="Deletar tarefa"/></button>  
+                    </div>
                 </Modal.Footer>
             </Modal>
+
+
 { /*
             <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
                 <Modal.Body>
