@@ -77,6 +77,8 @@ export const Listagem = props => {
             if (!idTarefa) {
                 setMsgErro('Favor informar a tarefa a ser excluída');
                 return
+            } else {
+                console.log(idTarefa);
             }
 
             //caso dados sejam preenchidos corretamente executa requisição de cadastro da tarefa
@@ -141,9 +143,11 @@ export const Listagem = props => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={atualizarTarefa}>Salvar</button>
+                    <button onClick={atualizarTarefa}></button>
+                    
 
                     <button onClick={() => {
+                        deletarTarefa()
                         setShowModal(false)
                     }}>Cancelar</button>
                 </Modal.Footer>
