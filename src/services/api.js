@@ -28,10 +28,16 @@ export const executaRequisicao = (endPoint, metodo, body) => {
     //printando parametros recebidos na chamada da função
     console.log(`Executando: ${URL}${endPoint}, metodo: ${metodo}, body: ${body}, headers ${headers}`);
 
-    return instance.request({
+    let payload = {
         url: endPoint,
         method: metodo,
-        data: body? body : '',
         headers: headers
-    });
+    }
+
+    if(metodo !== 'delete') {
+        payload = { data: body ? body : '', ...payload }
+        
+    }
+
+    return instance.request(payload);
 }
