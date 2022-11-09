@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
-import { Modal } from 'react-bootstrap';
+//import { Modal } from 'react-bootstrap';
+import imgUpdate from '../assets/icones/icon-update.png';
+import imgDelete from '../assets/icones/icon-delete.png';
 import concluido from '../assets/icones/checked.svg';
 
 export const Item = props => {
 
     //recebe o objeto tarefa como props da API e faz o destructor
-    const { tarefa, selecionarTarefa, showModal } = props;
-    //pega os dados a serem utilizados da tarefa
-    //const { deletarTarefa } = props;
-    //const { msgErro } = props;
-    const { dataPrevistaConclusao, dataConclusao, nome } = tarefa;
-
-    //const [Erro, setErro] = useState('');
-
-    //const [showModal, setShowModal] = useState(false);
+    const { tarefa, selecionarTarefa} = props;
+   
+    const { dataPrevistaConclusao, dataConclusao, nome } = tarefa;    
 
     //função para gerenciar texto a ser exibido da data de conclusão da tarefa
     const getDataTexto = (dtConclusao, dtPrevisao) => {
@@ -26,17 +22,9 @@ export const Item = props => {
         }
     };
 
-    //const verificaErros = () => {
-        //if (msgErro) {
-            //setErro(msgErro);
-        //}
-    //}
-
-
     // os elementos e classes mudam de acordo a se a tarefa está concluida ou não
     return (
-        <div className={"container-item " + (dataConclusao ? "" : "ativo")}
-            onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}>
+        <div className={"container-item " + (dataConclusao ? "" : "ativo")}>
             <div>
                 {dataConclusao && <img src={concluido} alt="Tarefa concluida" />}
 
@@ -44,10 +32,10 @@ export const Item = props => {
                 <span>{getDataTexto(dataConclusao, dataPrevistaConclusao)}</span>
             </div>
             <div className="atualizar-deletar">
-                <button>Deletar</button>
+                {!dataConclusao && <button onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}><img src={imgUpdate} alt="Editar tarefa"/></button>}
+                <button onClick={() => {selecionarTarefa(tarefa)}}><img src={imgDelete} alt="Deletar tarefa"/></button>
 
             </div>
-            
 
         </div>
     )

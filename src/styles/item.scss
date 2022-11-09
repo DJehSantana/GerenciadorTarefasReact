@@ -43,20 +43,22 @@
         width: 25%;
 
         button {
-            width: 100%;
-            max-width: 150px;
-            padding: 7px;
-            background-color: $lightGreyColor;
-            color: $primaryColor;
-            font-size: 14px;
-            border-color: $primaryColor;
-            border-radius: 12px;
             cursor: pointer;
+            border-width: 0.5px;
+            border-style: solid;
+            border-color: $mediumGreyColor;
+            border-radius: 8px;
+            margin-left: 10px;
 
             &:hover {
-                background-color: $primaryColor;
-                color: white;
+                opacity: 0.7;
             }
+
+            img {
+                width: 34px;
+                margin-right: 0;
+            }
+
         }
     }
 
@@ -89,7 +91,9 @@
 
         .atualizar-deletar {
             button {
-                font-size: 15px;
+                img {
+                    width: 42px;
+                }
             }
         }
 
