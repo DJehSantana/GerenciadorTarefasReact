@@ -129,13 +129,13 @@ export const Home = props => {
                     {msgErro && <span className='error'>{msgErro}</span>}
                     <div className="inputs col-12">
                         <input type="text" name="nome"
-                        placeholder="Nome da tarefa" value={nomeTarefa} 
-                        onChange={evento => setNomeTarefa(evento.target.value)}/>
+                            placeholder="Nome da tarefa" value={nomeTarefa} 
+                            onChange={evento => setNomeTarefa(evento.target.value)}/>
                         <input type="text" name="dataPrevistaConclusao"
-                        placeholder="Data prevista de conclusão" value={dataPrevistaConclusao}
-                        onChange={evento => setDataPrevistaConclusao(evento.target.value)}
-                        onFocus={evento => evento.target.type = 'date'}
-                        onBlur={evento => dataPrevistaConclusao ? evento.target.type = 'date' : evento.target.type = 'text'}/>
+                            placeholder="Data prevista de conclusão" value={dataPrevistaConclusao}
+                            onChange={evento => setDataPrevistaConclusao(evento.target.value)}
+                            onFocus={evento => evento.target.type = 'date'}
+                            onBlur={evento => dataPrevistaConclusao ? evento.target.type = 'date' : evento.target.type = 'text'}/>
                     </div>                    
                 </Modal.Body>
                 <Modal.Footer>

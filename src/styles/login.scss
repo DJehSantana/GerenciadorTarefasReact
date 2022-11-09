@@ -9,6 +9,17 @@
         width: 197px;
     }
 
+    p {
+        cursor: pointer;
+        margin-left: 5px;
+        color: $primaryColor;
+
+        &:hover {
+            color: $mediumGreyColor;
+            font-weight: bold;
+        }
+    }
+
     .input {
         display: flex;
         flex-direction: row;
@@ -17,7 +28,7 @@
         img {
             margin-right: 10px;
             margin-bottom: 15px;
-        }
+        }        
 
         input {            
             margin-bottom: 15px;

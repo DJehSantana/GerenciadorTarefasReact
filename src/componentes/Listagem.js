@@ -126,7 +126,7 @@ export const Listagem = props => {
 
             <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
                 <Modal.Body>
-                    <p>{dataConclusao ? "Deletar tarefa" : "Atualizar Tarefa"}</p>
+                    <p>{dataConclusao ? "Deletar tarefa" : "Atualizar ou deletar tarefa"}</p>
                     {msgErro && <span className='error'>{msgErro}</span>}
                     <div className="inputs col-12">
                         <input type="text" name="nome"

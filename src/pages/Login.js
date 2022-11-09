@@ -12,6 +12,9 @@ export const Login = props => {
     const [senha, setSenha] = useState ('');
     const [msgErro, setMsgErro] = useState('');
     const [isLoading, setLoading] = useState(false);
+    const [nomeUsuario, setNomeUsuario] = useState('');
+    const [emailUsuario, setEmailUsuario] = useState('');
+    const [senhaUsuario, setSenhaUsuario] = useState('');
 
     const [showModal, setShowModal] = useState(false);
     //o React guarda a informação a cada alteração, a variável armazena a informação
@@ -54,6 +57,44 @@ export const Login = props => {
         setLoading(false);    
     }
 
+
+    const cadastrarUsuario = async () => {
+
+        try {
+            //tratamento de erro
+            if(!nomeUsuario || !emailUsuario || !senhaUsuario ) {
+                setMsgErro('Favor preencher corretamente todos os campos');
+                return
+            }
+            //atribuindo valor dos inputs as propriedades do body que será enviado 
+            //como parâmetro para cadastro da tarefa
+            const body = {
+                nome : nomeUsuario,
+                email : emailUsuario,
+                senha : senhaUsuario
+            }
+
+            //caso dados sejam preenchidos corretamente executa requisição de cadastro da tarefa
+            await executaRequisicao('usuario', 'post', body);
+            
+            //limpando campos e fechando o modal
+            setNomeUsuario('');
+            setEmailUsuario('');
+            setSenhaUsuario('');
+            setMsgErro('');
+            setShowModal(false);
+            
+        } catch (e) {
+            console.log(e);
+            if(e?.response?.data?.erro) {
+                setMsgErro(e.response.data.erro);
+            } else {
+                setMsgErro('Não foi possível finalizar o cadastro, fale com o administrador');
+            }
+        }
+    }
+
+
     return (
         <div className='container-login'>
             <img
@@ -63,6 +104,9 @@ export const Login = props => {
             />
 
             <form>
+
+                {msgErro && <span className='error'>{msgErro}</span>}
+
                <Input 
                  srcImg = {mail} 
                  altImg = "Icone email" 
@@ -83,7 +127,8 @@ export const Login = props => {
                  setValue = {setSenha}
                  />
 
-                {msgErro && <p className='error'>{msgErro}</p>}
+                
+                <p onClick={() => {setShowModal(true)}}>Cadastre-se</p>
                 
                 {//quando o usuário clicar no botão entrar, ele vai desabilitar o clique por 3 segundos e vai 
                 //colocar a mensagem de carregando no botão
@@ -93,9 +138,35 @@ export const Login = props => {
 
             <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
                 <Modal.Body>
-                    <p>Este modal será usado para cadastro de novos usuários</p>                    
+                    <p>Cadastre seus dados!</p>
+                    {msgErro && <span className='error'>{msgErro}</span>} 
 
-                </Modal.Body>                
+                    <div className="inputs col-12">
+                        <input type="text" name="nome"
+                            placeholder="Nome Completo" value={nomeUsuario}
+                            onChange={evento => setNomeUsuario(evento.target.value)} />
+                        <input type="text" name="email"
+                            placeholder="Email" value={emailUsuario}
+                            onChange={evento => setEmailUsuario(evento.target.value)} />
+                        <input type="password" name="senhaUsuario"
+                            placeholder="Senha" value={senhaUsuario}
+                            onChange={evento => setSenhaUsuario(evento.target.value)} />
+                    </div>                   
+
+                </Modal.Body> 
+
+                <Modal.Footer>
+                    <div className='footer-usuario'>                    
+                        <button onClick={cadastrarUsuario}>Salvar</button>
+                        <button onClick={() => {
+                            setShowModal(false)
+                            setMsgErro('')
+                            setNomeUsuario('')
+                            setEmailUsuario('')
+                            setSenhaUsuario('')
+                        }}>Cancelar</button>
+                    </div>
+                </Modal.Footer>
             </Modal>
         </div>
     );

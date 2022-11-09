@@ -57,6 +57,31 @@
         justify-content: center;
     }
 
+    .footer-usuario {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        button {
+            width: 45%;
+            background-color: $primaryColor;
+            border-color: $primaryColor;
+            color: white;            
+            border-radius: 10px;
+            padding: 8px;
+            margin-left: 10px;
+            font-size: 14px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.7;
+            }
+
+        }
+    }
+
     @media screen and (min-width:992px) {
 
         .modal-body,
