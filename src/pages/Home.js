@@ -31,7 +31,7 @@ export const Home = props => {
     }
     
     //conectando com a API de tarefas
-    const getTarefasComFiltro = async () => {
+    const listarTarefasComFiltro = async () => {
         try {
 
             //filtros inicia recebendo o status 
@@ -59,7 +59,7 @@ export const Home = props => {
 
     //chamando o método getTarefas no carregamento
     useEffect(() => {
-        getTarefasComFiltro
+        listarTarefasComFiltro()
     }, [status, inicio, conclusao]);
 
     //função para chamar método cadastrar da tarefa na API
@@ -88,7 +88,7 @@ export const Home = props => {
             setShowModal(false);
 
             //chamando filtro de tarefas
-            await getTarefasComFiltro();
+            await listarTarefasComFiltro();
             
         } catch (e) {
             console.log(e);
@@ -121,7 +121,7 @@ export const Home = props => {
                 setConclusao= {setConclusao}
                 setStatus= {setStatus}
                 />  
-            <Listagem tarefas= {tarefas} getTarefasComFiltro= {getTarefasComFiltro} />
+            <Listagem tarefas= {tarefas} getTarefasComFiltro= {listarTarefasComFiltro} />
             <Footer showModal={() => setShowModal(true)}/> 
             <Modal show={showModal} onHide={toggleModal} className="container-modal">
                 <Modal.Body>
