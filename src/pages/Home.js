@@ -59,7 +59,7 @@ export const Home = props => {
 
     //chamando o método getTarefas no carregamento
     useEffect(() => {
-        getTarefasComFiltro()
+        getTarefasComFiltro
     }, [status, inicio, conclusao]);
 
     //função para chamar método cadastrar da tarefa na API
