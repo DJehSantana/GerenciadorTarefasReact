@@ -8,9 +8,9 @@ import concluido from '../assets/icones/checked.svg';
 export const Item = props => {
 
     //recebe o objeto tarefa como props da API e faz o destructor
-    const { tarefa, selecionarTarefa} = props;
-   
-    const { dataPrevistaConclusao, dataConclusao, nome } = tarefa;    
+    const { tarefa, selecionarTarefa } = props;
+
+    const { dataPrevistaConclusao, dataConclusao, nome } = tarefa;
 
     //função para gerenciar texto a ser exibido da data de conclusão da tarefa
     const getDataTexto = (dtConclusao, dtPrevisao) => {
@@ -32,8 +32,8 @@ export const Item = props => {
                 <span>{getDataTexto(dataConclusao, dataPrevistaConclusao)}</span>
             </div>
             <div className="atualizar-deletar">
-                {!dataConclusao && <button onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}><img src={imgUpdate} alt="Editar tarefa"/></button>}
-                <button onClick={() => {selecionarTarefa(tarefa)}}><img src={imgDelete} alt="Deletar tarefa"/></button>
+                {!dataConclusao && <button onClick={() => dataConclusao ? null : selecionarTarefa(tarefa)}><img src={imgUpdate} alt="Editar tarefa" /></button>}
+                <button onClick={() => { selecionarTarefa(tarefa) }}><img src={imgDelete} alt="Deletar tarefa" /></button>
 
             </div>
 
