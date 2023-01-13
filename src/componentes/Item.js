@@ -12,13 +12,15 @@ export const Item = props => {
 
     const { dataPrevistaConclusao, dataConclusao, nome } = tarefa;
 
+    const timezone = new Date(dataPrevistaConclusao).getTimezoneOffset();
+
     //função para gerenciar texto a ser exibido da data de conclusão da tarefa
     const getDataTexto = (dtConclusao, dtPrevisao) => {
         if (dtConclusao) {
             //o moment formata como será exibida a data
-            return `Concluído em: ${moment(dtConclusao).format('DD/MM/yyyy')}`
+            return `Concluído em: ${moment(dtConclusao).utcOffset(timezone).format('DD/MM/yyyy')}`
         } else {
-            return `Previsão de conclusão em: ${moment(dtPrevisao).format('DD/MM/yyyy')}`
+            return `Previsão de conclusão em: ${moment(dtPrevisao).utcOffset(timezone).format('DD/MM/yyyy')}`
         }
     };
 

@@ -22,13 +22,14 @@ export const Listagem = props => {
     const [dataConclusao, setDataConclusao] = useState('');
     const [dataPrevistaConclusao, setDataPrevistaConclusao] = useState('');
 
+    const timezone = new Date(dataPrevistaConclusao).getTimezoneOffset();
     //função que ativa edição da tarefa
     const selecionarTarefa = tarefa => {
 
         setMsgErro('');
         setIdTarefa(tarefa.id);
         setNomeTarefa(tarefa.nome);
-        setDataPrevistaConclusao(moment(tarefa.dataPrevistaConclusao).format('yyyy-MM-DD'));
+        setDataPrevistaConclusao(moment(tarefa.dataPrevistaConclusao).utcOffset(timezone).format('yyyy-MM-DD'));
         setDataConclusao(tarefa.dataConclusao);
         setShowModal(true);
     }
@@ -76,7 +77,7 @@ export const Listagem = props => {
     const deletarTarefa = async (tarefa) => {
 
         selecionarTarefa(tarefa)
-       
+
         try {
             //tratamento de erro
             if (!idTarefa) {
@@ -140,7 +141,7 @@ export const Listagem = props => {
                             onBlur={evento => dataPrevistaConclusao ? evento.target.type = 'date' : evento.target.type = 'text'} />}
 
                         <input type="text" name="dataConclusao"
-                            placeholder="Data Conclusão" value={dataConclusao}                            
+                            placeholder="Data Conclusão" value={dataConclusao}
                             onChange={evento => setDataConclusao(evento.target.value)}
                             onFocus={evento => evento.target.type = 'date'}
                             onBlur={evento => dataConclusao ? evento.target.type = 'date' : evento.target.type = 'text'} />
@@ -148,36 +149,13 @@ export const Listagem = props => {
                 </Modal.Body>
                 <Modal.Footer>
                     <div className='modal-icons'>
-                        <button onClick={atualizarTarefa}> <img src={imgSave} alt="Salvar alterações"/></button>                   
-                        <button onClick={() => {setShowModal(false)}}> <img src={imgCancel} alt= "Cancelar alterações" /></button>
-                        <button onClick={deletarTarefa}> <img src={imgDelete} alt="Deletar tarefa"/></button>  
+                        <button onClick={atualizarTarefa}> <img src={imgSave} alt="Salvar alterações" /></button>
+                        <button onClick={() => { setShowModal(false) }}> <img src={imgCancel} alt="Cancelar alterações" /></button>
+                        <button onClick={deletarTarefa}> <img src={imgDelete} alt="Deletar tarefa" /></button>
                     </div>
                 </Modal.Footer>
             </Modal>
-
-
-{ /*Modal de confirmação de deleção da tarefa, não está ativo pois está abrindo junto com o outro modal quando 
-a tarefa é clicada.
-    
-            <Modal show={showModal} onHide={() => setShowModal(false)} className="container-modal">
-                <Modal.Body>
-                    <p>Tem certeza que deseja excluir essa tarefa?</p>
-                    {msgErro && <span className='error'>{msgErro}</span>}
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <button onClick={deletarTarefa}>Sim</button>
-
-                    <button onClick={() => {
-                        setShowModal(false)
-                        setMsgErro('');
-                    }}>Cancelar</button>
-                </Modal.Footer>
-            </Modal>
-            */
-        }
         </>
-        /*  */
 
     )
 }
